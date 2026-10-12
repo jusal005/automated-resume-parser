@@ -1,0 +1,19 @@
+# Optional: a ready-to-use PostgreSQL for this project.
+#   docker compose up -d
+# then in .env:
+#   DATABASE_URL=postgresql://resume_user:resume_pass@localhost:5432/resume_db
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: resume_parser_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: resume_user
+      POSTGRES_PASSWORD: resume_pass
+      POSTGRES_DB: resume_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:

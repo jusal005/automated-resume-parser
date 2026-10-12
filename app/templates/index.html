@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-2xl mx-auto py-12">
+  <div class="text-center mb-10">
+    <h1 class="text-4xl font-extrabold tracking-tight mb-3">Intelligent Resume Parser</h1>
+    <p class="text-slate-400 text-sm">Upload candidate resumes in PDF or DOCX format to extract skills, contact details, and education automatically.</p>
+  </div>
+
+  <form action="{{ url_for('main.upload_file') }}" method="POST" enctype="multipart/form-data" class="bg-slate-800/40 border border-slate-700/60 rounded-2xl p-8 shadow-xl">
+    <label for="resume-upload" class="border-2 border-dashed border-slate-600 hover:border-teal-400 rounded-xl p-10 flex flex-col items-center justify-center cursor-pointer transition bg-slate-900/40 group">
+      <svg class="w-12 h-12 text-slate-400 group-hover:text-teal-400 transition mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+      </svg>
+      <span class="text-sm font-semibold text-slate-200">Click to upload or drag & drop</span>
+      <span class="text-xs text-slate-500 mt-1">PDF or DOCX (up to 16MB)</span>
+      <input id="resume-upload" name="resume" type="file" accept=".pdf,.docx" class="hidden" required onchange="document.getElementById('file-chosen').textContent = this.files[0].name" />
+    </label>
+    <div id="file-chosen" class="text-xs text-teal-400 mt-3 text-center truncate"></div>
+
+    <button type="submit" class="mt-6 w-full py-3 px-4 rounded-xl font-semibold bg-gradient-to-r from-teal-500 to-indigo-600 hover:from-teal-400 hover:to-indigo-500 text-white transition shadow-lg shadow-teal-500/20">
+      Parse & Store Candidate
+    </button>
+  </form>
+</div>
+{% endblock %}
